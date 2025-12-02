@@ -1,40 +1,36 @@
 pipeline {
-    agent any // Menjalankan di agen Jenkins mana pun
+    agent any
 
     stages {
-        // --- Stage 1: Checkout Code ---
-        stage('Checkout') {
-            steps {
-                // Mengambil kode dari SCM (Source Code Management) seperti Git
-                checkout scm
-            }
-        }
-
-        // --- Stage 2: Install Dependencies ---
         stage('Install Dependencies') {
             steps {
-                // Instal paket PHPUnit dan dependensi lainnya
-                sh 'composer install --prefer-dist --no-interaction'
+                // Instalasi Composer yang sudah terbukti berhasil
+                sh 'C:/Users/Lab32/php/php.exe -r "copy(\'https://getcomposer.org/installer\', \'composer-setup.php\');"'
+                sh 'C:/Users/Lab32/php/php.exe composer-setup.php --install-dir . --filename composer.phar'
+                sh 'C:/Users/Lab32/php/php.exe composer.phar install --prefer-dist --no-interaction'
+                sh 'rm composer-setup.php'
             }
         }
-
-        // --- Stage 3: Run PHPUnit Tests & Generate Report ---
-        stage('Test') {
+        
+        stage('Run Test (Method A: ABSOLUTE PATH)') {
             steps {
-                // 1. Jalankan PHPUnit
-                // Gunakan opsi --log-junit untuk menghasilkan file XML hasil tes
-                // File ini akan dibaca oleh JUnit Plugin
-                sh 'vendor/bin/phpunit --bootstrap vendor/autoload.php --log-junit target/result.xml tests' 
+                // Metode A: Menggunakan variabel WORKSPACE untuk path absolut ke binary PHPUnit
+                sh 'C:/Users/Lab32/php/php.exe "${WORKSPACE}/vendor/phpunit/phpunit/phpunit" --bootstrap vendor/autoload.php --log-junit target/result.xml tests'
             }
         }
-
-        // --- Stage 4: Publish Results (Reporting) ---
-        stage('Publish Results') {
+        
+        stage('Run Test (Method B: VENDOR/BIN)') {
             steps {
-                // Memublikasikan hasil tes menggunakan JUnit Plugin
-                // Ini akan menghasilkan grafik dan laporan di dashboard Jenkins
-                junit 'target/result.xml'
+                // Metode B: Menggunakan vendor/bin/phpunit yang seharusnya berfungsi (jika di-link dengan benar)
+                sh 'C:/Users/Lab32/php/php.exe vendor/bin/phpunit --bootstrap vendor/autoload.php --log-junit target/result.xml tests'
             }
+        }
+    }
+    
+    post {
+        always {
+            // Memublikasikan hasil JUnit
+            junit 'target/result.xml'
         }
     }
 }
