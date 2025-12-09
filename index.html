@@ -1,13 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style/css/bootstrap.min.css">
+    <title>Anggota Kelompok Keren 😎</title>
+    <style>
+        /* CSS Dimulai di Sini */
+        :root {
+            /* Definisi Variabel Warna */
+            --warna-dasar: #f4f7fa; /* Abu-abu cerah untuk latar belakang */
+            --warna-kartu: #ffffff;
+            --warna-judul: #34495e; /* Biru tua untuk judul */
+            --warna-teks: #7f8c8d; /* Abu-abu sedang untuk teks */
+            --warna-aksen-1: #3498db; /* Biru cerah */
+            --warna-aksen-2: #2ecc71; /* Hijau cerah */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--warna-dasar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--warna-kartu);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--warna-judul);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            border-bottom: 3px solid var(--warna-aksen-1);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .anggota-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .anggota-card {
+            background-color: var(--warna-dasar);
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+
+        .anggota-card:nth-child(even) {
+            border-left: 5px solid var(--warna-aksen-1);
+        }
+
+        .anggota-card:nth-child(odd) {
+            border-left: 5px solid var(--warna-aksen-2);
+        }
+
+        .anggota-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            /* Animasi bayangan saat kursor di atas */
+        }
+
+        .anggota-card h2 {
+            color: var(--warna-judul);
+            margin-top: 0;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .anggota-card p {
+            color: var(--warna-teks);
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* Responsif Sederhana */
+        @media (max-width: 600px) {
+            .anggota-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .anggota-card {
+                width: 80%;
+            }
+        }
+        /* CSS Berakhir di Sini */
+    </style>
 </head>
 <body>
-    <p>Vito Adityaaaaaaaaaaaaaaaa</p>
-    <script src="style/js/bootstrap.min.js" ></script>
+
+    <div class="container">
+        <h1>Tim Hebat Kami 💪</h1>
+        <div class="anggota-list">
+            
+            <div class="anggota-card">
+                <h2>Vito Aditya</h2>
+                <p>NPM: 23753079</p>
+            </div>
+
+            <div class="anggota-card">
+                <h2>Finkan Agustina</h2>
+                <p>NPM: 22753052</p>
+            </div>
+
+            <div class="anggota-card">
+                <h2>Azhar Rizky Trinanda</h2>
+                <p>NPM: 23753049</p>
+            </div>
+
+            <div class="anggota-card">
+                <h2>Yona Amalia</h2>
+                <p>NPM: 23753081</p>
+            </div>
+
+        </div>
+    </div>
+    
 </body>
 </html>
